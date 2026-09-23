@@ -20,9 +20,9 @@ services:
         fromService:
           type: web
           name: resolviq-frontend
-          property: url
+          envVarKey: RENDER_EXTERNAL_URL
       - key: DEMO_API_KEY
-        sync: false
+        generateValue: true
 
   - type: web
     name: resolviq-frontend
@@ -39,8 +39,11 @@ services:
         fromService:
           type: web
           name: resolviq-api
-          property: url
+          envVarKey: RENDER_EXTERNAL_URL
       - key: VITE_DEMO_API_KEY
-        sync: false
+        fromService:
+          type: web
+          name: resolviq-api
+          envVarKey: DEMO_API_KEY
       - key: VITE_DEMO_USER
         value: demo@resolviq.local

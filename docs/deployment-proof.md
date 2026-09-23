@@ -69,4 +69,4 @@ npm run build
 
 ## Simple next upgrade
 
-Connect the deployment provider to GitHub, add the same demo key to backend and frontend environment variables, then turn on `ENABLE_DEPLOY_VERIFY`.
+Connect the deployment provider to GitHub, let Render generate the demo key, then turn on `ENABLE_DEPLOY_VERIFY` after the live URLs are available.
