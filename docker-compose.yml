@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: resolviq-postgres
+    environment:
+      POSTGRES_USER: resolviq
+      POSTGRES_PASSWORD: resolviq
+      POSTGRES_DB: resolviq
+    ports:
+      - "5432:5432"
+    volumes:
+      - resolviq-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U resolviq -d resolviq"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  resolviq-postgres-data:

@@ -1,0 +1,7 @@
+Receipt from BrightMart
+Purchase date: 2026-07-02
+Amount: $300
+
+Email denial from BrightMart on 2026-07-16:
+We are refusing your refund request because the return window has closed.
+The customer states the item was defective and returned within the promised warranty period.

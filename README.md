@@ -1,0 +1,163 @@
+# Resolviq
+
+Resolviq is a full-stack AI Administrative Resolution Platform that turns unstructured consumer documents into organized dispute cases and helps users generate and track claims for refunds, warranties, and travel issues.
+
+The project is intentionally straightforward so it is easy to explain in an interview:
+
+- React dashboard for creating and managing cases.
+- FastAPI backend for case, document, status, and deadline endpoints.
+- PostgreSQL for users, cases, documents, deadlines, and extracted case data.
+- PDF/text upload support.
+- Pydantic validation for structured AI output.
+- Mock AI mode by default, with an OpenAI-backed abstraction ready for a real key.
+- Automated tests for creation, validation, invalid input, and document workflow.
+
+## What the app does
+
+1. A user creates a case and chooses one of three categories: refund, warranty, or travel.
+2. The user uploads a receipt, denial email, plain text file, or PDF.
+3. The backend extracts document text.
+4. The AI service returns structured fields: summary, company, disputed amount, important dates, dispute reason, evidence, and missing information.
+5. Pydantic validates the structured output.
+6. The backend stores the case data.
+7. The dashboard displays an organized case view and generates an editable claim draft.
+8. The user tracks status and deadlines.
+
+## Folder structure
+
+```text
+resolviq/
+  backend/
+    app/
+      api/          FastAPI routes
+      core/         settings
+      db/           database session and initialization
+      models/       SQLAlchemy database models
+      schemas/      Pydantic request/response and AI schemas
+      services/     AI abstraction and PDF/text extraction
+    tests/          backend tests
+    demo_files/     sample upload documents
+  frontend/
+    src/
+      api/          browser API client
+      components/   dashboard components
+      types/        TypeScript data types
+  docs/
+    interview-prep.md
+  docker-compose.yml
+```
+
+## Setup
+
+Use Python 3.11, 3.12, or 3.13 for the backend. Python 3.14 may require local build tools for some validation dependencies while ecosystem wheels catch up.
+
+### 1. Start PostgreSQL
+
+```bash
+docker compose up -d
+```
+
+### 2. Configure backend environment
+
+```bash
+cd backend
+copy .env.example .env
+```
+
+Mock AI is enabled by default:
+
+```env
+AI_PROVIDER=mock
+```
+
+That means the app runs without a paid API key. If you later add an OpenAI key, set:
+
+```env
+AI_PROVIDER=openai
+OPENAI_API_KEY=your_key_here
+```
+
+### 3. Run the backend
+
+```bash
+cd backend
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python -m app.db.init_db
+uvicorn app.main:app --reload
+```
+
+Backend URL:
+
+```text
+http://localhost:8000
+```
+
+API docs:
+
+```text
+http://localhost:8000/docs
+```
+
+### 4. Run the frontend
+
+Open a second terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend URL:
+
+```text
+http://localhost:5173
+```
+
+## Try the demo workflow
+
+1. Open the frontend.
+2. Create a refund, warranty, or travel case.
+3. Upload `backend/demo_files/refund_dispute.txt`.
+4. Review the extracted company, amount, evidence, missing information, and generated claim draft.
+5. Add a deadline and change the status.
+
+## Tests
+
+From `backend/`:
+
+```bash
+pytest
+```
+
+Covered behavior:
+
+- Case creation.
+- Invalid category rejection.
+- Structured AI output validation.
+- Document upload and case analysis workflow.
+
+## Design choices
+
+This project avoids unnecessary sophistication on purpose. There is no complex auth system, background queue, vector database, or multi-agent architecture. The goal is to show a clean full-stack workflow a CS student can explain clearly:
+
+- API receives a document.
+- Text extraction converts it into plain text.
+- AI service returns structured data.
+- Pydantic validates the structure.
+- SQLAlchemy stores it in PostgreSQL.
+- React displays the result.
+
+## Resume-safe claims
+
+Every claim below is supported by the code:
+
+- Built a React and FastAPI full-stack application.
+- Implemented document upload and PDF/text extraction.
+- Designed SQLAlchemy models for users, cases, documents, deadlines, and structured case fields.
+- Used Pydantic to validate structured AI output.
+- Added a mock AI fallback so the app runs without paid API access.
+- Added automated backend tests for core workflows.
+- Provided Docker Compose for local PostgreSQL.
