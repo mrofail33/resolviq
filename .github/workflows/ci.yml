@@ -20,7 +20,9 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
       - name: Run backend tests
-        run: pytest -q
+        env:
+          PYTHONPATH: .
+        run: python -m pytest tests -q
 
   frontend:
     runs-on: ubuntu-latest
