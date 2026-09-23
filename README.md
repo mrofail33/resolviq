@@ -11,6 +11,7 @@ The project is intentionally straightforward so it is easy to explain in an inte
 - Pydantic validation for structured AI output.
 - Known-answer evaluation dataset for company, amount, date, claim type, and reason extraction.
 - Optional demo API-key auth boundary for deployed demos.
+- Deployment blueprint for React, FastAPI, and PostgreSQL.
 - Mock AI mode by default, with an OpenAI-backed abstraction ready for a real key.
 - Automated tests for creation, validation, invalid input, and document workflow.
 
@@ -164,8 +165,11 @@ The repo includes:
 - frontend build verification through CI
 - a backend Dockerfile in `backend/Dockerfile`
 - GitHub Actions checks in `.github/workflows/ci.yml`
+- deployed-app verification in `.github/workflows/deploy-verification.yml`
+- deployment blueprint in `render.yaml`
 - an interview-safe proof guide in `docs/interview-proof.md`
 - deployment proof notes in `docs/deployment-proof.md`
+- deployed auth verification notes in `docs/deployed-auth-verification.md`
 - security boundaries in `docs/security-notes.md`
 - structured extraction evaluation in `docs/evaluation-dataset.md`
 
@@ -177,6 +181,8 @@ Every claim below is supported by the code:
 
 - Built a React and FastAPI full-stack application.
 - Added an optional demo authentication boundary between the React app and API.
+- Added deployment files for a React frontend, FastAPI backend, and PostgreSQL database.
+- Added a deployed-flow verifier that checks health, API-key rejection, authorized case creation, authorized case listing, and frontend loading.
 - Implemented document upload and PDF/text extraction.
 - Designed SQLAlchemy models for users, cases, documents, deadlines, and structured case fields.
 - Used Pydantic to validate structured AI output.

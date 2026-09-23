@@ -1,0 +1,46 @@
+# Deployed Auth Verification
+
+Safe interview claim only after the verification workflow passes:
+
+> I deployed the React and FastAPI Resolviq app and verified that the deployed case workflow is protected by a demo API key.
+
+## Final deployed flow
+
+```text
+User -> React deployment -> demo authentication -> FastAPI deployment -> PostgreSQL -> mock LLM extraction
+```
+
+## Files that support this
+
+- `render.yaml` defines a simple production deployment: PostgreSQL, FastAPI backend, and React static frontend.
+- `.github/workflows/deploy-verification.yml` checks the deployed app from GitHub Actions.
+- `scripts/verify_deployed_auth.py` verifies `/health`, confirms `/cases` rejects requests without the API key, creates a case with the API key, lists cases with the API key, and loads the frontend.
+
+## Secrets and variables needed
+
+Set the same demo API key on the deployed backend and frontend:
+
+```text
+DEMO_API_KEY
+VITE_DEMO_API_KEY
+```
+
+Set these GitHub Actions secrets:
+
+```text
+RESOLVIQ_API_URL
+RESOLVIQ_FRONTEND_URL
+RESOLVIQ_DEMO_API_KEY
+```
+
+Set this GitHub repository variable to enable deploy verification:
+
+```text
+ENABLE_DEPLOY_VERIFY=true
+```
+
+## What not to overclaim
+
+- This is demo API-key protection, not full user signup/login.
+- This is a deployed full-stack demo, not a production multi-tenant security system.
+- Mock AI mode is acceptable for demos; OpenAI mode is an integration path.

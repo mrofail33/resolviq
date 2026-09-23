@@ -1,0 +1,28 @@
+name: Verify Deployed App
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    if: ${{ vars.ENABLE_DEPLOY_VERIFY == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify protected deployed flow
+        env:
+          RESOLVIQ_API_URL: ${{ secrets.RESOLVIQ_API_URL }}
+          RESOLVIQ_FRONTEND_URL: ${{ secrets.RESOLVIQ_FRONTEND_URL }}
+          RESOLVIQ_DEMO_API_KEY: ${{ secrets.RESOLVIQ_DEMO_API_KEY }}
+        run: |
+          python scripts/verify_deployed_auth.py \
+            --api-url "$RESOLVIQ_API_URL" \
+            --frontend-url "$RESOLVIQ_FRONTEND_URL" \
+            --api-key "$RESOLVIQ_DEMO_API_KEY"

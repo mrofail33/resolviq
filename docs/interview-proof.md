@@ -15,6 +15,8 @@ Safe interview claim:
 - Mock AI mode by default so the app is demoable without paid API access.
 - Optional OpenAI mode behind `AI_PROVIDER=openai`.
 - Optional demo API-key auth boundary through `DEMO_API_KEY`, `X-API-Key`, and `X-Demo-User`.
+- Deployment blueprint in `render.yaml` for React, FastAPI, and PostgreSQL.
+- Deployed auth-flow verification in `.github/workflows/deploy-verification.yml`.
 - Backend workflow tests in `backend/tests/`.
 - CI that runs backend tests and frontend build checks.
 
@@ -32,6 +34,10 @@ Document -> LLM/mock LLM -> structured JSON -> validation -> PostgreSQL
 
 ```text
 User -> React -> demo authentication -> FastAPI -> PostgreSQL -> LLM/mock LLM
+```
+
+```text
+React deployment -> API-key protected FastAPI deployment -> PostgreSQL
 ```
 
 ## What not to claim yet
