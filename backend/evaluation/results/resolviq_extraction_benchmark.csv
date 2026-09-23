@@ -1,0 +1,46 @@
+name,category,company_expected,company_actual,company_ok,amount_expected,amount_actual,amount_ok,date_expected,date_ok,reason_ok,processing_ms
+refund_01,refund,BrightMart,BrightMart,True,75.00,75.00,True,2026-08-01,True,True,0.5633
+refund_02,refund,QuickCart,QuickCart,True,93.00,93.00,True,2026-08-02,True,True,0.0515
+refund_03,refund,MetroStyle,MetroStyle,True,111.00,111.00,True,2026-08-03,True,True,0.0359
+refund_04,refund,GadgetHub,GadgetHub,True,129.00,129.00,True,2026-08-04,True,True,0.034
+refund_05,refund,FreshBox,FreshBox,True,147.00,147.00,True,2026-08-05,True,True,0.0364
+refund_06,refund,BrightMart,BrightMart,True,165.00,165.00,True,2026-08-06,True,True,0.026
+refund_07,refund,QuickCart,QuickCart,True,183.00,183.00,True,2026-08-07,True,True,0.0218
+refund_08,refund,MetroStyle,MetroStyle,True,201.00,201.00,True,2026-08-08,True,True,0.024
+refund_09,refund,GadgetHub,GadgetHub,True,219.00,219.00,True,2026-08-09,True,True,0.0194
+refund_10,refund,FreshBox,FreshBox,True,237.00,237.00,True,2026-08-10,True,True,0.0204
+refund_11,refund,BrightMart,BrightMart,True,255.00,255.00,True,2026-08-11,True,True,0.0188
+refund_12,refund,QuickCart,QuickCart,True,273.00,273.00,True,2026-08-12,True,True,0.0188
+refund_13,refund,MetroStyle,MetroStyle,True,291.00,291.00,True,2026-08-13,True,True,0.0197
+refund_14,refund,GadgetHub,GadgetHub,True,309.00,309.00,True,2026-08-14,True,True,0.0177
+refund_15,refund,FreshBox,FreshBox,True,327.00,327.00,True,2026-08-15,True,True,0.0168
+warranty_01,warranty,Northstar Appliances,the manufacturer,False,75.00,75.00,True,2026-08-01,True,True,0.515
+warranty_02,warranty,Apex Electronics,the manufacturer,False,93.00,93.00,True,2026-08-02,True,True,0.0404
+warranty_03,warranty,Summit Tools,the manufacturer,False,111.00,111.00,True,2026-08-03,True,True,0.0379
+warranty_04,warranty,Harbor Devices,the manufacturer,False,129.00,129.00,True,2026-08-04,True,True,0.0302
+warranty_05,warranty,Oakridge Furniture,the manufacturer,False,147.00,147.00,True,2026-08-05,True,True,0.1598
+warranty_06,warranty,Northstar Appliances,the manufacturer,False,165.00,165.00,True,2026-08-06,True,True,0.0386
+warranty_07,warranty,Apex Electronics,the manufacturer,False,183.00,183.00,True,2026-08-07,True,True,0.0456
+warranty_08,warranty,Summit Tools,the manufacturer,False,201.00,201.00,True,2026-08-08,True,True,0.0317
+warranty_09,warranty,Harbor Devices,the manufacturer,False,219.00,219.00,True,2026-08-09,True,True,0.0353
+warranty_10,warranty,Oakridge Furniture,the manufacturer,False,237.00,237.00,True,2026-08-10,True,True,0.0287
+warranty_11,warranty,Northstar Appliances,the manufacturer,False,255.00,255.00,True,2026-08-11,True,True,0.029
+warranty_12,warranty,Apex Electronics,the manufacturer,False,273.00,273.00,True,2026-08-12,True,True,0.0296
+warranty_13,warranty,Summit Tools,the manufacturer,False,291.00,291.00,True,2026-08-13,True,True,0.0292
+warranty_14,warranty,Harbor Devices,the manufacturer,False,309.00,309.00,True,2026-08-14,True,True,0.0289
+warranty_15,warranty,Oakridge Furniture,the manufacturer,False,327.00,327.00,True,2026-08-15,True,True,0.0302
+travel_01,travel,SkyWay Air,the travel provider,False,75.00,75.00,True,2026-08-01,True,True,0.0328
+travel_02,travel,Coastal Rail,the travel provider,False,93.00,93.00,True,2026-08-02,True,True,0.0364
+travel_03,travel,MetroStay Hotels,the travel provider,False,111.00,111.00,True,2026-08-03,True,True,0.0304
+travel_04,travel,BlueWing Airlines,the travel provider,False,129.00,129.00,True,2026-08-04,True,True,0.0394
+travel_05,travel,UrbanRide Travel,the travel provider,False,147.00,147.00,True,2026-08-05,True,True,0.031
+travel_06,travel,SkyWay Air,the travel provider,False,165.00,165.00,True,2026-08-06,True,True,0.0289
+travel_07,travel,Coastal Rail,the travel provider,False,183.00,183.00,True,2026-08-07,True,True,0.0298
+travel_08,travel,MetroStay Hotels,the travel provider,False,201.00,201.00,True,2026-08-08,True,True,0.0316
+travel_09,travel,BlueWing Airlines,the travel provider,False,219.00,219.00,True,2026-08-09,True,True,0.0341
+travel_10,travel,UrbanRide Travel,the travel provider,False,237.00,237.00,True,2026-08-10,True,True,0.0303
+travel_11,travel,SkyWay Air,the travel provider,False,255.00,255.00,True,2026-08-11,True,True,0.0297
+travel_12,travel,Coastal Rail,the travel provider,False,273.00,273.00,True,2026-08-12,True,True,0.0305
+travel_13,travel,MetroStay Hotels,the travel provider,False,291.00,291.00,True,2026-08-13,True,True,0.0303
+travel_14,travel,BlueWing Airlines,the travel provider,False,309.00,309.00,True,2026-08-14,True,True,0.0302
+travel_15,travel,UrbanRide Travel,the travel provider,False,327.00,327.00,True,2026-08-15,True,True,0.0295

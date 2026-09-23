@@ -146,6 +146,21 @@ Covered behavior:
 - Structured AI output validation.
 - Document upload and case analysis workflow.
 
+## Measured Evaluation
+
+Local benchmark completed on 2026-09-23 with `backend/scripts/benchmark_extraction.py`. Raw evidence is saved in `backend/evaluation/results/`.
+
+| Documents | Categories | Field checks | Field-extraction accuracy | Validation success rate | Average processing time |
+| ---: | --- | ---: | ---: | ---: | ---: |
+| 45 | refund, warranty, travel | 180 | 83.3% | 100.0% | 0.056 ms/document |
+
+Classification accuracy is not reported because Resolviq does not currently implement autonomous document classification; users choose `refund`, `warranty`, or `travel` before analysis. That is a product boundary, not a measured classifier result.
+
+Evidence files:
+
+- `backend/evaluation/results/resolviq_extraction_summary.json`
+- `backend/evaluation/results/resolviq_extraction_benchmark.csv`
+
 ## Design choices
 
 This project avoids unnecessary sophistication on purpose. There is no complex auth system, background queue, vector database, or multi-agent architecture. The goal is to show a clean full-stack workflow a CS student can explain clearly:
@@ -190,3 +205,7 @@ Every claim below is supported by the code:
 - Added a mock AI fallback so the app runs without paid API access.
 - Added automated backend tests for core workflows.
 - Provided Docker Compose for local PostgreSQL.
+
+Resume-ready quantified bullet:
+
+- Built a React/FastAPI administrative-claims workflow that processed 45 known-answer refund, warranty, and travel documents with 83.3% field-extraction accuracy and 100.0% Pydantic validation success, as measured by `backend/scripts/benchmark_extraction.py`, by combining text/PDF ingestion, structured AI output validation, SQLAlchemy storage, and a mock-AI fallback.
