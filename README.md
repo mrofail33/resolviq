@@ -124,6 +124,10 @@ http://localhost:5173
 4. Review the extracted company, amount, evidence, missing information, and generated claim draft.
 5. Add a deadline and change the status.
 
+## Demo Screenshot
+
+![Resolviq dashboard with analyzed warranty case](docs/screenshots/resolviq-dashboard.png)
+
 ## Tests
 
 From `backend/`:
@@ -149,6 +153,20 @@ This project avoids unnecessary sophistication on purpose. There is no complex a
 - Pydantic validates the structure.
 - SQLAlchemy stores it in PostgreSQL.
 - React displays the result.
+
+## Interview Proof
+
+The repo includes:
+
+- backend workflow tests in `backend/tests/`
+- frontend build verification through CI
+- a backend Dockerfile in `backend/Dockerfile`
+- GitHub Actions checks in `.github/workflows/ci.yml`
+- an interview-safe proof guide in `docs/interview-proof.md`
+- deployment proof notes in `docs/deployment-proof.md`
+- security boundaries in `docs/security-notes.md`
+
+Default AI mode is `mock`, which makes the app reliable for demos and tests. OpenAI mode is optional and should be described as an integration path, not as required for the core demo.
 
 ## Resume-safe claims
 
