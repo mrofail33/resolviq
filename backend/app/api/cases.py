@@ -3,6 +3,7 @@ from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app.core.auth import require_demo_user
 from app.core.config import get_settings
 from app.db.session import get_db
 from app.models.case import (
@@ -23,13 +24,21 @@ router = APIRouter(prefix="/cases", tags=["cases"])
 
 
 @router.get("", response_model=list[CaseRead])
-def list_cases(db: Session = Depends(get_db)) -> list[CaseRead]:
+def list_cases(
+    db: Session = Depends(get_db),
+    _user_email: str = Depends(require_demo_user),
+) -> list[CaseRead]:
     cases = db.scalars(select(Case).order_by(Case.created_at.desc())).all()
     return [_case_to_read(db, case) for case in cases]
 
 
 @router.post("", response_model=CaseRead, status_code=status.HTTP_201_CREATED)
-def create_case(payload: CaseCreate, db: Session = Depends(get_db)) -> CaseRead:
+def create_case(
+    payload: CaseCreate,
+    db: Session = Depends(get_db),
+    user_email: str = Depends(require_demo_user),
+) -> CaseRead:
+    payload.user_email = user_email
     user = db.scalar(select(User).where(User.email == payload.user_email))
     if user is None:
         user = User(email=payload.user_email, full_name=payload.user_full_name)
@@ -44,7 +53,11 @@ def create_case(payload: CaseCreate, db: Session = Depends(get_db)) -> CaseRead:
 
 
 @router.get("/{case_id}", response_model=CaseRead)
-def get_case(case_id: int, db: Session = Depends(get_db)) -> CaseRead:
+def get_case(
+    case_id: int,
+    db: Session = Depends(get_db),
+    _user_email: str = Depends(require_demo_user),
+) -> CaseRead:
     case = db.get(Case, case_id)
     if case is None:
         raise HTTPException(status_code=404, detail="Case not found")
@@ -52,7 +65,12 @@ def get_case(case_id: int, db: Session = Depends(get_db)) -> CaseRead:
 
 
 @router.patch("/{case_id}/status", response_model=CaseRead)
-def update_case_status(case_id: int, payload: CaseStatusUpdate, db: Session = Depends(get_db)) -> CaseRead:
+def update_case_status(
+    case_id: int,
+    payload: CaseStatusUpdate,
+    db: Session = Depends(get_db),
+    _user_email: str = Depends(require_demo_user),
+) -> CaseRead:
     case = db.get(Case, case_id)
     if case is None:
         raise HTTPException(status_code=404, detail="Case not found")
@@ -67,6 +85,7 @@ async def upload_document(
     case_id: int,
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
+    _user_email: str = Depends(require_demo_user),
 ) -> CaseRead:
     case = db.get(Case, case_id)
     if case is None:
@@ -108,7 +127,12 @@ async def upload_document(
 
 
 @router.post("/{case_id}/deadlines", response_model=DeadlineRead, status_code=status.HTTP_201_CREATED)
-def create_deadline(case_id: int, payload: DeadlineCreate, db: Session = Depends(get_db)) -> DeadlineRead:
+def create_deadline(
+    case_id: int,
+    payload: DeadlineCreate,
+    db: Session = Depends(get_db),
+    _user_email: str = Depends(require_demo_user),
+) -> DeadlineRead:
     case = db.get(Case, case_id)
     if case is None:
         raise HTTPException(status_code=404, detail="Case not found")

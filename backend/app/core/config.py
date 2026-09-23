@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     openai_model: str = "gpt-4.1-mini"
     upload_dir: str = "uploads"
     cors_origins: str = "http://localhost:5173,http://127.0.0.1:5173"
+    demo_api_key: str | None = None
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 

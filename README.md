@@ -9,6 +9,8 @@ The project is intentionally straightforward so it is easy to explain in an inte
 - PostgreSQL for users, cases, documents, deadlines, and extracted case data.
 - PDF/text upload support.
 - Pydantic validation for structured AI output.
+- Known-answer evaluation dataset for company, amount, date, claim type, and reason extraction.
+- Optional demo API-key auth boundary for deployed demos.
 - Mock AI mode by default, with an OpenAI-backed abstraction ready for a real key.
 - Automated tests for creation, validation, invalid input, and document workflow.
 
@@ -165,6 +167,7 @@ The repo includes:
 - an interview-safe proof guide in `docs/interview-proof.md`
 - deployment proof notes in `docs/deployment-proof.md`
 - security boundaries in `docs/security-notes.md`
+- structured extraction evaluation in `docs/evaluation-dataset.md`
 
 Default AI mode is `mock`, which makes the app reliable for demos and tests. OpenAI mode is optional and should be described as an integration path, not as required for the core demo.
 
@@ -173,9 +176,11 @@ Default AI mode is `mock`, which makes the app reliable for demos and tests. Ope
 Every claim below is supported by the code:
 
 - Built a React and FastAPI full-stack application.
+- Added an optional demo authentication boundary between the React app and API.
 - Implemented document upload and PDF/text extraction.
 - Designed SQLAlchemy models for users, cases, documents, deadlines, and structured case fields.
 - Used Pydantic to validate structured AI output.
+- Added known-answer extraction checks for company, amount, date, claim type, and reason.
 - Added a mock AI fallback so the app runs without paid API access.
 - Added automated backend tests for core workflows.
 - Provided Docker Compose for local PostgreSQL.

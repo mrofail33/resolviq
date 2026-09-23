@@ -10,9 +10,11 @@ Safe interview claim:
 - FastAPI backend with case, document, status, and deadline endpoints.
 - Text/PDF extraction before analysis.
 - Pydantic validation for structured analysis output.
+- Known-answer extraction evaluation in `backend/evaluation/case_extraction_eval.json`.
 - SQLAlchemy models for users, cases, documents, deadlines, evidence, missing info, and important dates.
 - Mock AI mode by default so the app is demoable without paid API access.
 - Optional OpenAI mode behind `AI_PROVIDER=openai`.
+- Optional demo API-key auth boundary through `DEMO_API_KEY`, `X-API-Key`, and `X-Demo-User`.
 - Backend workflow tests in `backend/tests/`.
 - CI that runs backend tests and frontend build checks.
 
@@ -22,10 +24,20 @@ Default mode is `AI_PROVIDER=mock`. That is intentional for demos and tests. It 
 
 Real provider mode exists through the OpenAI client abstraction, but should be described as optional integration, not the core proof.
 
+## Final AI and full-stack flows
+
+```text
+Document -> LLM/mock LLM -> structured JSON -> validation -> PostgreSQL
+```
+
+```text
+User -> React -> demo authentication -> FastAPI -> PostgreSQL -> LLM/mock LLM
+```
+
 ## What not to claim yet
 
 - Production claims management system.
-- Authentication or multi-tenant security.
+- Production authentication or multi-tenant security.
 - Production AI reliability.
 - Background jobs or advanced document processing.
 

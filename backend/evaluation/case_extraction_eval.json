@@ -1,0 +1,35 @@
+[
+  {
+    "name": "refund_denial",
+    "category": "refund",
+    "text": "Receipt from BrightMart. Purchase date: 2026-07-02. Amount: $300. Email denial refused refund.",
+    "expected": {
+      "company": "BrightMart",
+      "amount": "300.00",
+      "claim_type": "refund",
+      "reason_contains": "refund"
+    }
+  },
+  {
+    "name": "warranty_denial",
+    "category": "warranty",
+    "text": "Company: Northstar Appliances. Warranty claim denied on 2026-08-10. Amount: $850. Receipt and warranty attached.",
+    "expected": {
+      "company": "Northstar Appliances",
+      "amount": "850.00",
+      "claim_type": "warranty",
+      "reason_contains": "warranty"
+    }
+  },
+  {
+    "name": "travel_reimbursement",
+    "category": "travel",
+    "text": "Airline: SkyWay Air. Baggage delay reimbursement request dated 2026-09-01. Amount: $125. Itinerary and email attached.",
+    "expected": {
+      "company": "SkyWay Air",
+      "amount": "125.00",
+      "claim_type": "travel",
+      "reason_contains": "travel"
+    }
+  }
+]

@@ -1,9 +1,23 @@
 import type { CaseCategory, CaseRecord, CaseStatus, Deadline } from "../types/case";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000";
+const DEMO_API_KEY = import.meta.env.VITE_DEMO_API_KEY;
+const DEMO_USER = import.meta.env.VITE_DEMO_USER ?? "demo@resolviq.local";
+
+function authHeaders(): Record<string, string> {
+  const headers: Record<string, string> = { "X-Demo-User": DEMO_USER };
+  if (DEMO_API_KEY) headers["X-API-Key"] = DEMO_API_KEY;
+  return headers;
+}
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, options);
+  const response = await fetch(`${API_BASE}${path}`, {
+    ...options,
+    headers: {
+      ...authHeaders(),
+      ...(options?.headers ?? {}),
+    },
+  });
   if (!response.ok) {
     const error = await response.json().catch(() => ({ detail: "Request failed" }));
     throw new Error(error.detail ?? "Request failed");
